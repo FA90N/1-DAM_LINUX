@@ -1,0 +1,5 @@
+3:marta:zaragoza
+12:pablo:madrid
+9:luis:zaragoza
+21:carmen:huesca
+18:eva:madrid

@@ -1,0 +1,10 @@
+roberto,44,sevilla
+miguel,53,zaragoza
+laura,5,barcelona
+javier,34,madrid
+sonia,16,sevilla
+eva,23,cuenca
+leyan,26,zaragoza
+paco,26,zaragoza
+lupe,16,fqseaf
+pepe,16,zaragoza

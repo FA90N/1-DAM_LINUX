@@ -1,0 +1,395 @@
+lechuga,murcia,iceberg
+tomate,almeria,raff
+pera,valencia,conferencia
+naranja,valencia,zumo
+uva,zaragoza,negra
+melocoton,teruel,embolsado
+#!/bin/bash
+rm resumen.txt 2>/dev/null
+fichero=$(cat /dev/stdin)
+cont=0
+for linea in $(cat $fichero)
+do
+		pro=$(echo $linea | cut -d"," -f1)
+		ciu=$(echo $linea | cut -d"," -f2)
+		var=$(echo $linea | cut -d"," -f3)
+		
+		if [ "$ciu" == "$1" ]
+		then
+			echo "El producto $pro viene de la $ciu y es de la variedad $var" >> resumen.txt
+			let cont++
+		fi
+	
+
+done
+echo " " >> resumen.txt
+echo "Hemos encontrado $cont productos" en $1 >> resumen.txt
+
+
+#!/bin/bash
+
+source funciones.sh
+rm res.txt 2>/dev/null
+case $2 in
+
+ 	"sumar")
+		sumar $1
+		echo "El resultado de sumar es: $suma"
+	;;
+
+	"multiplicar")
+		multiplicar $1
+		echo "El resultado de multiplicar es: $mul"
+	;;
+
+	"factorial")
+		factorial $1
+		cat res.txt
+		
+	;;
+
+	*)
+		echo "No existe"
+	;;
+esac
+#!/bin/bash
+source funciones.sh
+buscarusuario $1
+
+if [ "$op" == "si" ]
+then
+	buscarcarpeta $1
+	echo "El usuario $1 $op existe en el sistema y $opc tiene carpeta"
+	
+
+else
+
+	buscarcarpeta $1
+	echo "El usuario $1 no existe en el sistema y $opc tiene carpeta"
+
+fi
+
+
+
+
+
+
+#!/bin/bash
+
+source funciones.sh
+
+bien=0
+mal=0
+for linea in $(cat $1)
+do
+
+	ortografia $linea
+	if [ "$opcion" == "si" ]
+	then
+		echo "La palabra $linea si es ortográticamente correcta"
+		let bien++
+	else
+		echo "La palabra $linea no es ortográticamente correcta"
+		let mal++
+	fi
+
+done
+echo "Hay $bien palabras correctas y $mal palabras incorrectas"
+#!/bin/bash
+
+source funciones.sh
+
+if [ "$1" == "terminar" ]
+then
+
+	generar
+	
+	cat examendenombre.txt
+else
+
+	echo "Nada"
+fi
+#!/bin/bash
+
+function generar () {
+
+	cat /home/dam16/parcial3eval/*.* > examendenombre.txt
+
+
+}
+
+function ortografia () {
+
+
+		bienono=$(echo $linea | aspell list)
+		if [ -z $bienono ]
+		then
+			opcion=si
+		else
+			opcion=no
+		fi
+
+	
+}
+
+function buscarusuario {
+
+ esta=$(cat /etc/passwd | grep -i $1)
+	if [ -z $esta ]
+	then
+		op=no
+	else
+		op=si
+ 	fi
+
+}
+
+
+function buscarcarpeta {
+
+ 	esta=$(ls /home | grep -i $1)
+	if [ -z $esta ]
+	then
+		opc=no
+	else
+		opc=si
+ 	fi
+
+}
+
+function sumar () {
+	suma=0
+	for linea in $(cat $1)
+	do 
+		let suma=$suma+$linea
+	done
+	
+}
+
+function multiplicar () {
+	mul=1
+	for linea in $(cat $1)
+	do 
+		let mul=$mul*$linea
+	done
+	
+}
+
+function factorial () {
+	
+	for linea in $(cat $1)
+	do
+		n=1
+		for fac in $(seq 1 1 $linea)
+		do
+		
+			let n=$n*$fac
+		done
+		echo "El factorial de $linea es $n" >> res.txt
+	done
+
+}
+
+
+lechuga,murcia,iceberg
+tomate,almeria,raff
+pera,valencia,conferencia
+naranja,valencia,zumo
+uva,zaragoza,negra
+melocoton,teruel,embolsado
+#!/bin/bash
+rm resumen.txt 2>/dev/null
+fichero=$(cat /dev/stdin)
+cont=0
+for linea in $(cat $fichero)
+do
+		pro=$(echo $linea | cut -d"," -f1)
+		ciu=$(echo $linea | cut -d"," -f2)
+		var=$(echo $linea | cut -d"," -f3)
+		
+		if [ "$ciu" == "$1" ]
+		then
+			echo "El producto $pro viene de la $ciu y es de la variedad $var" >> resumen.txt
+			let cont++
+		fi
+	
+
+done
+echo " " >> resumen.txt
+echo "Hemos encontrado $cont productos" en $1 >> resumen.txt
+
+
+#!/bin/bash
+
+source funciones.sh
+rm res.txt 2>/dev/null
+case $2 in
+
+ 	"sumar")
+		sumar $1
+		echo "El resultado de sumar es: $suma"
+	;;
+
+	"multiplicar")
+		multiplicar $1
+		echo "El resultado de multiplicar es: $mul"
+	;;
+
+	"factorial")
+		factorial $1
+		cat res.txt
+		
+	;;
+
+	*)
+		echo "No existe"
+	;;
+esac
+#!/bin/bash
+source funciones.sh
+buscarusuario $1
+
+if [ "$op" == "si" ]
+then
+	buscarcarpeta $1
+	echo "El usuario $1 $op existe en el sistema y $opc tiene carpeta"
+	
+
+else
+
+	buscarcarpeta $1
+	echo "El usuario $1 no existe en el sistema y $opc tiene carpeta"
+
+fi
+
+
+
+
+
+
+#!/bin/bash
+
+source funciones.sh
+
+bien=0
+mal=0
+for linea in $(cat $1)
+do
+
+	ortografia $linea
+	if [ "$opcion" == "si" ]
+	then
+		echo "La palabra $linea si es ortográticamente correcta"
+		let bien++
+	else
+		echo "La palabra $linea no es ortográticamente correcta"
+		let mal++
+	fi
+
+done
+echo "Hay $bien palabras correctas y $mal palabras incorrectas"
+#!/bin/bash
+
+
+
+
+
+function ortografia {
+
+
+		bienono=$(echo $linea | aspell list)
+		if [ -z $bienono ]
+		then
+			opcion=si
+		else
+			opcion=no
+		fi
+
+	
+}
+
+function buscarusuario {
+
+ esta=$(cat /etc/passwd | grep -i $1)
+	if [ -z $esta ]
+	then
+		op=no
+	else
+		op=si
+ 	fi
+
+}
+
+
+function buscarcarpeta {
+
+ 	esta=$(ls /home | grep -i $1)
+	if [ -z $esta ]
+	then
+		opc=no
+	else
+		opc=si
+ 	fi
+
+}
+
+function sumar () {
+	suma=0
+	for linea in $(cat $1)
+	do 
+		let suma=$suma+$linea
+	done
+	
+}
+
+function multiplicar () {
+	mul=1
+	for linea in $(cat $1)
+	do 
+		let mul=$mul*$linea
+	done
+	
+}
+
+function factorial () {
+	
+	for linea in $(cat $1)
+	do
+		n=1
+		for fac in $(seq 1 1 $linea)
+		do
+		
+			let n=$n*$fac
+		done
+		echo "El factorial de $linea es $n" >> res.txt
+	done
+
+}
+
+
+9
+3
+11
+hola
+adio
+coco
+canal
+mesess
+examinar
+El producto pera viene de la valencia y es de la variedad conferencia
+El producto naranja viene de la valencia y es de la variedad zumo
+ 
+Hemos encontrado 2 productos en valencia
+9
+3
+11
+hola
+adio
+coco
+canal
+mesess
+examinar
+El producto pera viene de la valencia y es de la variedad conferencia
+El producto naranja viene de la valencia y es de la variedad zumo
+ 
+Hemos encontrado 2 productos en valencia

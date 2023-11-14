@@ -1,0 +1,95 @@
+#!/bin/bash
+
+read -p "Dime un nombre:" nom
+hora=$(date +"%Hh:%Mm:%Ss")
+leer=$(cat datos.txt | grep -i $nom)
+dia=$(date +"%d")
+mes=$(date +"%B")
+anio=$(date +"%Y")
+
+if [ -z $leer ]
+then
+	read -p "Dime edad:" edad
+	read -p "Dime su ciudad:" ciudad
+	echo "$nom,$edad,$ciudad" >> datos.txt
+else
+	cortar=$(echo $leer | cut -d"," -f1)
+
+	echo "Hola $cortar son las $hora y estamos a $dia de $mes de $anio"	
+	
+fi
+#!/bin/bash
+suma=0
+multiplicar=1
+for linea in $(cat numeros.txt)
+do	
+	let suma=$suma+$linea	
+	let multiplicar=$multiplicar*$linea
+
+done
+
+echo "La suma es: $suma"
+echo "La multipliacion es: $multiplicar"
+cat numeros.txt | sort -nr
+#!/bin/bash
+
+read -p "Dime un usuario: " usuario
+
+linea=$(cat /etc/passwd | cut -d":" -f1 | grep -i $usuario)
+carpeta=$(ls /home/ | grep -i $usuario)
+
+if [ -z $linea ]
+then
+	if [ -z $carpeta ]
+	then
+		echo "El usuario $usuario no esta de alta y tiene no carpeta"
+		read -p "Quieres crearlo si o no: " respuesta
+		opcion=$(echo $respuesta | tr [A-Z] [a-z])
+		if [ $opcion == "si" ]
+		then
+			sudo useradd -m $usuario
+		fi
+
+	else
+		echo "El usuario $usuario no esta de alta y tiene carpeta"
+		read -p "Quieres crearlo si o no: " respuesta
+		opcion=$(echo $respuesta | tr [A-Z] [a-z])
+		if [ $opcion == "si" ]
+		then
+			sudo useradd $usuario
+		fi
+	fi
+
+else
+	if [ -z $carpeta ]
+	then
+		echo "El $usuario esta dado de alta y no tiene carpeta"
+	else
+		echo "El $usuario esta dado de alta y tiene carpeta"
+	fi
+fi
+	
+
+
+#!/bin/bash
+read -p "Dime una palabra: " pal
+palabra=$(echo $pal | tr [A-Z] [a-z])
+
+until [ "$palabra" == "terminar" ]
+do
+
+read -p "Dime una palabra: " pal
+palabra=$(echo $pal | tr [A-Z] [a-z])
+
+done
+
+rm examenleyan.txt 2>>/dev/null
+touch examenleyan.txt
+for linea in $(ls /home/dam16/eval02/*.sh)
+do 
+		
+	cat $linea >> examenleyan.txt
+		
+done
+tar -czf examendeleyan.tgz examenleyan.txt
+scp examendeleyan.tgz 192.168.1.112:/home/dam16/

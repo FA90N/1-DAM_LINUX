@@ -1,0 +1,6 @@
+lechuga,murcia,iceberg
+tomate,almeria,raff
+pera,valencia,conferencia
+naranja,valencia,zumo
+uva,zaragoza,negra
+melocoton,teruel,embolsado
