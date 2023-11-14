@@ -1,7 +1,0 @@
-maría,15,zaragoza
-luis,56,zaragoza
-lucas,44,zaragoza
-andrés,55,teruel
-marta,45,madrid
-javi,34,madrid
-carlos,34,huesca
