@@ -1,3 +1,3 @@
-# 1-DAM_LINUX
+# LINUX
 Comandos y Script de Linux
 Examenes de Linux
